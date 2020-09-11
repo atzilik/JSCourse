@@ -4,7 +4,7 @@ function hw1(start, end){
         if (isDiv3(i))
             console.log(`${i} Fizz`);
         if (isDiv5(i))
-            console.log(`${i} buzz`);
+            console.log(`${i} Buzz`);
         if (isDiv3(i) && isDiv5(i))
             console.log(`${i} FizzBuzz`);
     }
