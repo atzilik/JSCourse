@@ -1,21 +1,21 @@
 function hw1(start, end){
     for (let i=start; i<end; i++)
     {
-        if (IsDiv3(i))
+        if (isDiv3(i))
             console.log(`${i} Fizz`);
-        if (IsDiv5(i))
+        if (isDiv5(i))
             console.log(`${i} buzz`);
-        if (IsDiv3(i) && IsDiv5(i))
+        if (isDiv3(i) && isDiv5(i))
             console.log(`${i} FizzBuzz`);
     }
 }
 
-function IsDiv3(number)
+function isDiv3(number)
 {
     return !(number % 3);
 }
 
-function IsDiv5(number)
+function isDiv5(number)
 {
     return !(number % 5);
 }
