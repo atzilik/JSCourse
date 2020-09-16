@@ -1,50 +1,61 @@
+import {Order} from './order.js'
 export { Store };
+
+const NOTIFICATION_INTERVAL = 10000;
 
 class Store{
     constructor(products, customers, orders){
         this.products = products;
         this.customers = customers;
-        this.orders = orders;
-     
-        Order.prototype.toString = function orderToString() {
-            return JSON.stringify(this);
-        }
+        this.orders = orders;  
     }
+    
 
     addOrder(customerId, ...productsIds) {
+        if (this.areAllProductsInStock(productsIds)){
+            productsIds.forEach(productId => {
+                let product = this.products.find(p=>p.id === productId);
+                product.itemsInStock--;
+            });
+            let newOrder = new Order(customerId, productsIds);
+                this.orders.push(newOrder);
+                return true;
+        }   
+        return false;
+    }
+
+    areAllProductsInStock(productsIds){
+        let areAllProductsInStock = true;
         productsIds.forEach(productId => {
-            let product = this.products.find(p=>p.id == productId);
+            let product = this.products.find(p=>p.id === productId);
+            
             if (product){
-                if (product.itemsInStock)
+                if (!product.itemsInStock)
                 {
-                        product.itemsInStock--;
-                        let newOrder = new Order(customerId, productsIds);
-                        this.orders.push(newOrder);
-                        return true;
-                }
-                else{
+                    areAllProductsInStock = false;
                     console.log(`productID: ${productId} is out of stock`);
-                    return false;
                 }
             }
             else{
                 console.log(`productId: ${productId} not found in stock`);
-                return false;
+                areAllProductsInStock = false;
                 }
         });
+
+        return areAllProductsInStock;
     }
 
     printOrders(){
             this.orders.forEach(order => {
-                console.log(order);
+                console.log(`${order}`);
         });
     }
 
     notify(){
-        let productsOutOfStock;
         setInterval(()=> {
-            productsOutOfStock = this.products.filter(product=> !product.itemsInStock);
-            console.log(`The following products are out of stock: ${JSON.stringify(productsOutOfStock)}`);
-        }, 10000)
+            let productsOutOfStock = this.products.filter(product=> !product.itemsInStock);
+            if (productsOutOfStock.length)
+                console.log(`The following products are out of stock: ${productsOutOfStock.join()}`);
+        }, NOTIFICATION_INTERVAL);
     }
 }

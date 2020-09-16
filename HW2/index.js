@@ -1,34 +1,6 @@
 import {Store} from './store.js';
-
-
-class Product {
-    constructor(id, name, itemsInStock){
-        this._id = id;
-        this._name = name;
-        this._itemsInStock = itemsInStock;
-    }
-
-    set itemsInStock(itemsInStock) {this._itemsInStock = itemsInStock};
-    get itemsInStock() {return this._itemsInStock};
-    set id(id) {this._id = id};
-    get id() {return this._id};
-}
-
-class Customer {
-    constructor(id, name, address){
-        this.id = id;
-        this.name = name;
-        this.address = address;
-    }
-}
-
-class Order {
-    constructor(customerId, productsId)
-    {
-        this.customer = customerId;
-        this.products = productsId;
-    }
-}
+import {Product} from './product.js'
+import {Customer} from './customer.js'
 
 function initStore(){
     const products = [new Product(1,"Tomato", 1),
@@ -64,10 +36,7 @@ function loadStoreData(storeInJson){
 }
 
 let store = initStore();
-console.log(JSON.stringify(store));
 store.notify()
-let initialStoreState = saveStoreState(store);
 store.addOrder(106, 1,2,3);
+store.printOrders();
 console.log(`Updated store information: ${JSON.stringify(store)}`);
-console.log(JSON.stringify(loadStoreData(initialStoreState)));
-debugger;
