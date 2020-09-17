@@ -11,12 +11,12 @@ function initStore(){
                     new Product(6,"Potato",  4),
                     new Product(7,"Watermelon", 0)];
 
-    const customers = [new Customer({id: 100, name:"Avraham", address:"NYC"}),
-                       new Customer({id: 101, name:"Yaron", address:"Tel-Aviv"}),
-                       new Customer({id: 102, name:"Yigal", address:"Yokneam"}),
-                       new Customer({id: 103, name:"Nadav", address:"Akko"}),
-                       new Customer({id: 104, name:"Sigal", address:"Eilat"}),
-                       new Customer({id: 105, name:"Rivka", address:"Jerusalem"})];
+    const customers = [new Customer(100, "Avraham", "NYC"),
+                       new Customer(101, "Yaron", "Tel-Aviv"),
+                       new Customer(102, "Yigal", "Yokneam"),
+                       new Customer(103, "Nadav", "Akko"),
+                       new Customer(104, "Sigal", "Eilat"),
+                       new Customer(105, "Rivka", "Jerusalem")];
                       
  console.log("Store initialized...");
     return new Store(products, customers, []);
@@ -24,13 +24,13 @@ function initStore(){
 }
 
 function saveStoreState(store){
-    let jsonData = JSON.stringify(store);
+    const jsonData = JSON.stringify(store);
     console.log(jsonData);
     return jsonData;
 }
 
 function loadStoreData(storeInJson){
-   let store = JSON.parse(storeInJson);
+   const store = JSON.parse(storeInJson);
    return store;
 }
 

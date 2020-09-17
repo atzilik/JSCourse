@@ -14,10 +14,10 @@ class Store{
     addOrder(customerId, ...productsIds) {
         if (this.areAllProductsInStock(productsIds)){
             productsIds.forEach(productId => {
-                let product = this.products.find(p=>p.id === productId);
+                const product = this.products.find(p=>p.id === productId);
                 product.itemsInStock--;
             });
-            let newOrder = new Order(customerId, productsIds);
+            const newOrder = new Order(customerId, productsIds);
                 this.orders.push(newOrder);
                 return true;
         }   
@@ -27,7 +27,7 @@ class Store{
     areAllProductsInStock(productsIds){
         let areAllProductsInStock = true;
         productsIds.forEach(productId => {
-            let product = this.products.find(p=>p.id === productId);
+            const product = this.products.find(p=>p.id === productId);
             
             if (product){
                 if (!product.itemsInStock)
@@ -53,7 +53,7 @@ class Store{
 
     notify(){
         setInterval(()=> {
-            let productsOutOfStock = this.products.filter(product=> !product.itemsInStock);
+            const productsOutOfStock = this.products.filter(product=> !product.itemsInStock);
             if (productsOutOfStock.length)
                 console.log(`The following products are out of stock: ${productsOutOfStock.join()}`);
         }, NOTIFICATION_INTERVAL);
