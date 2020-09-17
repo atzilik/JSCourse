@@ -19,7 +19,6 @@ function initStore(){
                        new Customer({id: 105, name:"Rivka", address:"Jerusalem"})];
                       
  console.log("Store initialized...");
-
     return new Store(products, customers, []);
 
 }
@@ -38,5 +37,7 @@ function loadStoreData(storeInJson){
 let store = initStore();
 store.notify()
 store.addOrder(106, 1,2,3);
+let storeStateInJson = saveStoreState(store);
+initStore();
+loadStoreData(storeStateInJson);
 store.printOrders();
-console.log(`Updated store information: ${JSON.stringify(store)}`);
