@@ -36,7 +36,7 @@ function loadStoreData(storeInJson){
 
 let store = initStore();
 store.notify()
-store.addOrder(106, 1,2,3);
+store.addOrder(106, 7);
 let storeStateInJson = saveStoreState(store);
 initStore();
 loadStoreData(storeStateInJson);

@@ -33,11 +33,11 @@ class Store{
                 if (!product.itemsInStock)
                 {
                     areAllProductsInStock = false;
-                    console.log(`productID: ${productId} is out of stock`);
+                    console.log(`product: ${product} is out of stock`);
                 }
             }
             else{
-                console.log(`productId: ${productId} not found in stock`);
+                console.log(`product: ${product} not found in stock`);
                 areAllProductsInStock = false;
                 }
         });
