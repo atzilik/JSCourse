@@ -9,7 +9,6 @@ function delay(milliseconds, number) {
           else{
             reject(`Failed! ${number} is smaller than 10...`);
               return false;
-            
             } 
         }, milliseconds);
       });
@@ -19,10 +18,9 @@ function delay(milliseconds, number) {
 
     async function timeOutMessage()
     {
-        const res = await delay(500, 12).then(result=>{
-            console.log(result);
-          },
-         error => console.log(error)
+        const res = await delay(500, 12).then(
+          result=> console.log(result),
+          error => console.log(error)
         );
     }
 
