@@ -1,13 +1,10 @@
 export {GameOfLife};
 
 class GameOfLife{
-  constructor(rows, cols, canvas, ctx){
+  constructor(rows, cols, ctx){
     this.rows = rows;
     this.cols = cols;
     this.ctx = ctx;
-    this.canvas = canvas;
-    this.canvas.width = this.cols;
-    this.canvas.height = this.rows;
     this.grid = this.buildGameBoard();
   }
  
@@ -30,7 +27,7 @@ getNextGeneration(grid) {
       const cell = grid[col][row];
       let numNeighbours = 0;
 
-      //iterate over the neighbours
+      //count the neighbours of each cell
       for (let i = -1; i < 2; i++) {
         for (let j = -1; j < 2; j++) {
           if (i === 0 && j === 0) {
@@ -65,9 +62,10 @@ updateGameBoard(grid) {
       const cell = grid[col][row];
 
       this.ctx.beginPath();
-      this.ctx.rect(col * 100, row * 100, 100, 100);
+      this.ctx.rect(col * 10, row * 10, 10, 10);
       this.ctx.fillStyle = cell ? 'red' : 'white';
       this.ctx.fill();
+      this.ctx.stroke();
     }
   }
 }

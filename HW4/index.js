@@ -1,20 +1,20 @@
 import {GameOfLife} from './gameOfLife.js';
 
 
+var nextStepButton = document.getElementById('nextStepButton');
+nextStepButton.onclick = function(){goTonextStep()};
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = 600;
-canvas.height = 600;
+canvas.width = 50;
+canvas.height = 50;
 
-const COLS = canvas.width;
-const ROWS = canvas.height;
+const COLS = canvas.width / 10;
+const ROWS = canvas.height / 10;
 
-let gameOfLife = new GameOfLife(ROWS, COLS, canvas, ctx);
+let gameOfLife = new GameOfLife(ROWS, COLS, ctx);
 goTonextStep();
 
-var nextStepButton = document.getElementById('nextStepButton');
-nextStepButton.onclick = function(){goTonextStep()};
 
 function goTonextStep()
 {
