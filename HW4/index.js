@@ -6,13 +6,13 @@ nextStepButton.onclick = function(){goTonextStep()};
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = 50;
-canvas.height = 50;
+canvas.width = 800;
+canvas.height = 800;
+const size = 40;
+const cols = canvas.width / 40;
+const rows = canvas.height / 40;
 
-const COLS = canvas.width / 10;
-const ROWS = canvas.height / 10;
-
-let gameOfLife = new GameOfLife(ROWS, COLS, ctx);
+let gameOfLife = new GameOfLife(rows, cols, ctx, size);
 goTonextStep();
 
 
