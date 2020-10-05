@@ -23,9 +23,9 @@ update() {
 getNextGeneration(grid) {
   const nextGenerationState = grid.map(arr => [...arr]);
 
-  for (let col = 0; col < grid.length; col++) {
-    for (let row = 0; row < grid[col].length; row++) {
-      const cell = grid[col][row];
+  for (let column = 0; column < grid.length; column++) {
+    for (let row = 0; row < grid[column].length; row++) {
+      const cell = grid[column][row];
       let numNeighbours = 0;
 
       //count the neighbours of each cell
@@ -34,7 +34,7 @@ getNextGeneration(grid) {
           if (i === 0 && j === 0) {
             continue;
           }
-          const x_cell = col + i;
+          const x_cell = column + i;
           const y_cell = row + j;
 
           if (x_cell >= 0 && y_cell >= 0 && x_cell < this.cols && y_cell < this.rows) {
@@ -46,11 +46,11 @@ getNextGeneration(grid) {
 
       // the rules //
       if (cell === 1 && numNeighbours < 2) {
-        nextGenerationState[col][row] = 0; // die
+        nextGenerationState[column][row] = 0; // die
       } else if (cell === 1 && numNeighbours > 3) {
-        nextGenerationState[col][row] = 0; // die
+        nextGenerationState[column][row] = 0; // die
       } else if (cell === 0 && numNeighbours === 3) {
-        nextGenerationState[col][row] = 1; // alive
+        nextGenerationState[column][row] = 1; // alive
       }
     }
   }
@@ -58,12 +58,12 @@ getNextGeneration(grid) {
 }
 
 updateGameBoard(grid) {
-  for (let col = 0; col < grid.length; col++) {
-    for (let row = 0; row < grid[col].length; row++) {
-      const cell = grid[col][row];
+  for (let column = 0; column < grid.length; column++) {
+    for (let row = 0; row < grid[column].length; row++) {
+      const cell = grid[column][row];
 
       this.ctx.beginPath();
-      this.ctx.rect(col * this.size, row * this.size, this.size, this.size);
+      this.ctx.rect(column * this.size, row * this.size, this.size, this.size);
       this.ctx.fillStyle = cell ? 'red' : 'white';
       this.ctx.fill();
       this.ctx.stroke();
